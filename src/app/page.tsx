@@ -6,6 +6,7 @@ import ComoSumarse from '@/components/ComoSumarse';
 import PruebaSocial from '@/components/PruebaSocial';
 import CTAFinal from '@/components/CTAFinal';
 import Footer from '@/components/Footer';
+import PruebaSocial2 from '@/components/PruebaSocial2';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <MapaClases />
       <ComoSumarse /> 
       <PruebaSocial />
+      {/* <PruebaSocial2 /> */}
       <TipoClases />
       <CTAFinal />
       <Footer />

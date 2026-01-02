@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
     testimonials,
@@ -13,19 +13,6 @@ export default function PruebaSocial() {
     const [expandedTestimonials, setExpandedTestimonials] = useState<
         Set<string>
     >(new Set());
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
 
     const toggleExpanded = (id: string) => {
         const newExpanded = new Set(expandedTestimonials);
@@ -41,31 +28,6 @@ export default function PruebaSocial() {
         if (text.length <= maxLength) return text;
         return text.substring(0, maxLength) + "...";
     };
-
-    const nextTestimonials = () => {
-        const stepSize = isMobile ? 2 : 4;
-        setCurrentIndex((prev) => (prev + stepSize) % testimonials.length);
-    };
-
-    const prevTestimonials = () => {
-        const stepSize = isMobile ? 2 : 4;
-        setCurrentIndex(
-            (prev) =>
-                (prev - stepSize + testimonials.length) % testimonials.length
-        );
-    };
-
-    const getVisibleTestimonials = () => {
-        const count = isMobile ? 2 : 4;
-        const visible = [];
-        for (let i = 0; i < count; i++) {
-            const index = (currentIndex + i) % testimonials.length;
-            visible.push(testimonials[index]);
-        }
-        return visible;
-    };
-
-    const hasNavigation = testimonials.length > 1;
     return (
         <section className="py-20 bg-gray-50">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,184 +35,84 @@ export default function PruebaSocial() {
                     Quienes entrenan conmigo
                 </h2>
 
-                {/* Carousel Container */}
-                <div className="relative mb-12">
-                    {/* Navigation Buttons */}
-                    {hasNavigation && (
-                        <>
-                            <button
-                                onClick={prevTestimonials}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 z-10 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110 hidden md:block"
-                                aria-label="Anterior"
-                            >
-                                <svg
-                                    className="w-8 h-8"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M15 19l-7-7 7-7"
+                {/* Testimonials Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    {testimonials.map((testimonial) => (
+                        <div
+                            key={testimonial.id}
+                            className="bg-white rounded-lg p-6 shadow-sm"
+                        >
+                            <div className="flex items-center mb-4">
+                                {testimonial.img ? (
+                                    <Image
+                                        src={testimonial.img}
+                                        alt={testimonial.name}
+                                        width={48}
+                                        height={48}
+                                        className="w-12 h-12 rounded-full object-cover mr-4"
                                     />
-                                </svg>
-                            </button>
-
-                            <button
-                                onClick={nextTestimonials}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 z-10 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110 hidden md:block"
-                                aria-label="Siguiente"
-                            >
-                                <svg
-                                    className="w-8 h-8"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M9 5l7 7-7 7"
-                                    />
-                                </svg>
-                            </button>
-                        </>
-                    )}
-
-                    {/* Testimonials Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {getVisibleTestimonials().map((testimonial) => (
-                            <div
-                                key={testimonial.id}
-                                className="bg-white rounded-lg p-6 shadow-sm"
-                            >
-                                <div className="flex items-center mb-4">
-                                    {testimonial.img ? (
-                                        <Image
-                                            src={testimonial.img}
-                                            alt={testimonial.name}
-                                            width={48}
-                                            height={48}
-                                            className="w-12 h-12 rounded-full object-cover mr-4"
-                                        />
-                                    ) : (
-                                        <div
-                                            className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"
-                                            style={{
-                                                backgroundColor:
-                                                    "var(--primary)",
-                                            }}
-                                        >
-                                            {testimonial.name
-                                                .charAt(0)
-                                                .toUpperCase()}
-                                        </div>
-                                    )}
-                                    <div>
-                                        <h4 className="font-semibold text-gray-900">
-                                            {testimonial.name}
-                                        </h4>
-                                        <p className="text-sm text-gray-600">
-                                            {testimonial.birthYear && (
-                                                <span>
-                                                    {calcularEdad(
-                                                        testimonial.birthYear
-                                                    )}{" "}
-                                                    años •{" "}
-                                                </span>
-                                            )}
-                                            Alumno desde hace{" "}
-                                            {testimonial.startDate
-                                                ? calcularTiempoAlumno(
-                                                      testimonial.startDate
-                                                  )
-                                                : "tiempo desconocido"}
-                                        </p>
+                                ) : (
+                                    <div
+                                        className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"
+                                        style={{
+                                            backgroundColor:
+                                                "var(--primary)",
+                                        }}
+                                    >
+                                        {testimonial.name
+                                            .charAt(0)
+                                            .toUpperCase()}
                                     </div>
-                                </div>
+                                )}
                                 <div>
-                                    <p className="text-gray-700 italic">
-                                        &ldquo;
+                                    <h4 className="font-semibold text-gray-900">
+                                        {testimonial.name}
+                                    </h4>
+                                    <p className="text-sm text-gray-600">
+                                        {testimonial.birthYear && (
+                                            <span>
+                                                {calcularEdad(
+                                                    testimonial.birthYear
+                                                )}{" "}
+                                                años •{" "}
+                                            </span>
+                                        )}
+                                        Alumno desde hace{" "}
+                                        {testimonial.startDate
+                                            ? calcularTiempoAlumno(
+                                                  testimonial.startDate
+                                              )
+                                            : "tiempo desconocido"}
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-gray-700 italic">
+                                    &ldquo;
+                                    {expandedTestimonials.has(
+                                        testimonial.id
+                                    )
+                                        ? testimonial.text
+                                        : truncateText(testimonial.text)}
+                                    &rdquo;
+                                </p>
+                                {testimonial.text.length > 200 && (
+                                    <button
+                                        onClick={() =>
+                                            toggleExpanded(testimonial.id)
+                                        }
+                                        className="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                                    >
                                         {expandedTestimonials.has(
                                             testimonial.id
                                         )
-                                            ? testimonial.text
-                                            : truncateText(testimonial.text)}
-                                        &rdquo;
-                                    </p>
-                                    {testimonial.text.length > 200 && (
-                                        <button
-                                            onClick={() =>
-                                                toggleExpanded(testimonial.id)
-                                            }
-                                            className="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        >
-                                            {expandedTestimonials.has(
-                                                testimonial.id
-                                            )
-                                                ? "Leer menos"
-                                                : "Leer más"}
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Mobile Navigation Dots */}
-                    {hasNavigation && (
-                        <div className="flex justify-center mt-6 md:hidden">
-                            <button
-                                onClick={prevTestimonials}
-                                className="mx-2 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110"
-                                aria-label="Anterior"
-                            >
-                                <svg
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M15 19l-7-7 7-7"
-                                    />
-                                </svg>
-                            </button>
-                            <span className="mx-2 text-sm text-gray-600 self-center">
-                                {Math.floor(currentIndex / (isMobile ? 2 : 4)) +
-                                    1}{" "}
-                                /{" "}
-                                {Math.ceil(
-                                    testimonials.length / (isMobile ? 2 : 4)
+                                            ? "Leer menos"
+                                            : "Leer más"}
+                                    </button>
                                 )}
-                            </span>
-                            <button
-                                onClick={nextTestimonials}
-                                className="mx-2 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110"
-                                aria-label="Siguiente"
-                            >
-                                <svg
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M9 5l7 7-7 7"
-                                    />
-                                </svg>
-                            </button>
+                            </div>
                         </div>
-                    )}
+                    ))}
                 </div>
 
                 {/* Contador social */}
