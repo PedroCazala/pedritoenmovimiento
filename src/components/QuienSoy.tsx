@@ -9,7 +9,7 @@ export default function QuienSoy() {
           {/* Foto placeholder */}
           <div className="w-64 h-64 md:w-80 md:h-80 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
             <Image
-              src="/images/pedrito-en-mov-cuadrado.jpg"
+              src="https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/pedrito-en-mov-cuadrado.jpg?alt=media&token=17b75f0a-6c50-4326-9326-6cd08effd3fb"
               alt="Foto de Pedrito"
               width={320}
               height={320}

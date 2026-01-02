@@ -36,7 +36,7 @@ export const locations: Location[] = [
       { days: 'Viernes', time: ['8:30 hs'] }
     ],
     // description: 'Clases para todos los niveles',
-    img: '/images/parques/centenario.jpg'
+    img: 'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/parques%2Fcentenario.jpg?alt=media&token=a2568eb4-1c4d-44a2-b952-d9805644348c'
   },
   {
     id: 'unidad-latinoamericana',
@@ -46,7 +46,7 @@ export const locations: Location[] = [
             { days: 'Viernes', time: [ '20:10 hs, A partir de Febrero'] }
     ],
     // description: 'Clases intermedias',
-    img: '/images/parques/unidad-latinoamericana.jpg'
+    img: 'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/parques%2Funidad-latinoamericana.jpg?alt=media&token=085e7ab2-a71e-4d93-99be-48ff84ac98c2'
   },
   {
     id: 'belgrano',
@@ -56,7 +56,7 @@ export const locations: Location[] = [
       { days: 'Viernes', time: [ '18:00 hs, A partir de Febrero'] }
     ],
     // description: 'Clases para principiantes',
-    img: '/images/parques/belgrano.jpg'
+    img: 'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/parques%2Fbelgrano.jpg?alt=media&token=943589e8-4097-47da-b29f-6325fe9c9060'
   }
 ];
 

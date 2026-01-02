@@ -1,56 +1,285 @@
-'use client';
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import {
+    testimonials,
+    calcularEdad,
+    calcularTiempoAlumno,
+} from "@/data/testimonials";
+import { InstagramPrimaryButton, WhatsAppPrimaryButton } from "./buttons";
 
 export default function PruebaSocial() {
-  return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-16">
-          Quienes entrenan conmigo
-        </h2>
+    const [expandedTestimonials, setExpandedTestimonials] = useState<
+        Set<string>
+    >(new Set());
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
-        {/* Opción 1: Frases de alumnos */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" style={{ backgroundColor: 'var(--primary)' }}>
-                M
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900">María</h4>
-                <p className="text-sm text-gray-600">Alumna desde hace 6 meses</p>
-              </div>
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    const toggleExpanded = (id: string) => {
+        const newExpanded = new Set(expandedTestimonials);
+        if (newExpanded.has(id)) {
+            newExpanded.delete(id);
+        } else {
+            newExpanded.add(id);
+        }
+        setExpandedTestimonials(newExpanded);
+    };
+
+    const truncateText = (text: string, maxLength: number = 200) => {
+        if (text.length <= maxLength) return text;
+        return text.substring(0, maxLength) + "...";
+    };
+
+    const nextTestimonials = () => {
+        const stepSize = isMobile ? 2 : 4;
+        setCurrentIndex((prev) => (prev + stepSize) % testimonials.length);
+    };
+
+    const prevTestimonials = () => {
+        const stepSize = isMobile ? 2 : 4;
+        setCurrentIndex(
+            (prev) =>
+                (prev - stepSize + testimonials.length) % testimonials.length
+        );
+    };
+
+    const getVisibleTestimonials = () => {
+        const count = isMobile ? 2 : 4;
+        const visible = [];
+        for (let i = 0; i < count; i++) {
+            const index = (currentIndex + i) % testimonials.length;
+            visible.push(testimonials[index]);
+        }
+        return visible;
+    };
+
+    const hasNavigation = testimonials.length > 1;
+    return (
+        <section className="py-20 bg-gray-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-16">
+                    Quienes entrenan conmigo
+                </h2>
+
+                {/* Carousel Container */}
+                <div className="relative mb-12">
+                    {/* Navigation Buttons */}
+                    {hasNavigation && (
+                        <>
+                            <button
+                                onClick={prevTestimonials}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 z-10 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110 hidden md:block"
+                                aria-label="Anterior"
+                            >
+                                <svg
+                                    className="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 19l-7-7 7-7"
+                                    />
+                                </svg>
+                            </button>
+
+                            <button
+                                onClick={nextTestimonials}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 z-10 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110 hidden md:block"
+                                aria-label="Siguiente"
+                            >
+                                <svg
+                                    className="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </button>
+                        </>
+                    )}
+
+                    {/* Testimonials Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {getVisibleTestimonials().map((testimonial) => (
+                            <div
+                                key={testimonial.id}
+                                className="bg-white rounded-lg p-6 shadow-sm"
+                            >
+                                <div className="flex items-center mb-4">
+                                    {testimonial.img ? (
+                                        <Image
+                                            src={testimonial.img}
+                                            alt={testimonial.name}
+                                            width={48}
+                                            height={48}
+                                            className="w-12 h-12 rounded-full object-cover mr-4"
+                                        />
+                                    ) : (
+                                        <div
+                                            className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"
+                                            style={{
+                                                backgroundColor:
+                                                    "var(--primary)",
+                                            }}
+                                        >
+                                            {testimonial.name
+                                                .charAt(0)
+                                                .toUpperCase()}
+                                        </div>
+                                    )}
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900">
+                                            {testimonial.name}
+                                        </h4>
+                                        <p className="text-sm text-gray-600">
+                                            {testimonial.birthYear && (
+                                                <span>
+                                                    {calcularEdad(
+                                                        testimonial.birthYear
+                                                    )}{" "}
+                                                    años •{" "}
+                                                </span>
+                                            )}
+                                            Alumno desde hace{" "}
+                                            {testimonial.startDate
+                                                ? calcularTiempoAlumno(
+                                                      testimonial.startDate
+                                                  )
+                                                : "tiempo desconocido"}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p className="text-gray-700 italic">
+                                        &ldquo;
+                                        {expandedTestimonials.has(
+                                            testimonial.id
+                                        )
+                                            ? testimonial.text
+                                            : truncateText(testimonial.text)}
+                                        &rdquo;
+                                    </p>
+                                    {testimonial.text.length > 200 && (
+                                        <button
+                                            onClick={() =>
+                                                toggleExpanded(testimonial.id)
+                                            }
+                                            className="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                                        >
+                                            {expandedTestimonials.has(
+                                                testimonial.id
+                                            )
+                                                ? "Leer menos"
+                                                : "Leer más"}
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Mobile Navigation Dots */}
+                    {hasNavigation && (
+                        <div className="flex justify-center mt-6 md:hidden">
+                            <button
+                                onClick={prevTestimonials}
+                                className="mx-2 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110"
+                                aria-label="Anterior"
+                            >
+                                <svg
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 19l-7-7 7-7"
+                                    />
+                                </svg>
+                            </button>
+                            <span className="mx-2 text-sm text-gray-600 self-center">
+                                {Math.floor(currentIndex / (isMobile ? 2 : 4)) +
+                                    1}{" "}
+                                /{" "}
+                                {Math.ceil(
+                                    testimonials.length / (isMobile ? 2 : 4)
+                                )}
+                            </span>
+                            <button
+                                onClick={nextTestimonials}
+                                className="mx-2 text-gray-300 hover:text-gray-500 transition-all duration-300 hover:scale-110"
+                                aria-label="Siguiente"
+                            >
+                                <svg
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                {/* Contador social */}
+                <div className="text-center">
+                    <div
+                        className="inline-flex items-center text-white px-6 py-3 rounded-full"
+                        style={{ backgroundColor: "var(--primary-green)" }}
+                    >
+                        <svg
+                            className="w-6 h-6 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                        </svg>
+                        {/* <span className="font-semibold text-lg">+{testimonials.length} personas entrenan conmigo</span> */}
+                    </div>
+                </div>
             </div>
-            <p className="text-gray-700 italic">
-              &ldquo;Nunca pensé que podría hacer mi primera dominada. Pedrito me ayudó paso a paso, con paciencia y técnica.&rdquo;
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" style={{ backgroundColor: 'var(--primary)' }}>
-                J
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900">Juan</h4>
-                <p className="text-sm text-gray-600">Alumno desde hace 1 año</p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-[90vw] mx-auto py-6">
+                <WhatsAppPrimaryButton />
+                <InstagramPrimaryButton />
             </div>
-            <p className="text-gray-700 italic">
-              &ldquo;Las clases al aire libre cambiaron completamente mi energía. Mejoré mi fuerza y conocí gente increíble.&rdquo;
-            </p>
-          </div>
-        </div>
-
-        {/* Contador social */}
-        <div className="text-center">
-          <div className="inline-flex items-center text-white px-6 py-3 rounded-full" style={{ backgroundColor: 'var(--primary-green)' }}>
-            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            {/* <span className="font-semibold text-lg">+50 personas entrenan conmigo</span> */}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }

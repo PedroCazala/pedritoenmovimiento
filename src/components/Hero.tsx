@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { handleWhatsAppClickCalistenia } from '@/utils/contacto';
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Placeholder images - reemplazar con fotos reales de entrenamiento
   const images = [
-    '/images/pedrito-en-mov-cuadrado.jpg',
-    '/images/ayuda-verti-a-aru.jpg',
-    '/images/flexion-a-una-mano-anilla.jpeg',
+    'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/pedrito-en-mov-cuadrado.jpg?alt=media&token=17b75f0a-6c50-4326-9326-6cd08effd3fb',
+    'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/ayuda-verti-a-aru.jpg?alt=media&token=3b0d3aee-f91a-4723-8134-0c2d327b837d',
+    'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/flexion-a-una-mano-anilla.jpeg?alt=media&token=d4189418-f58a-4df1-8eb3-df09bd09ca5a',
   ];
 
   useEffect(() => {
@@ -20,10 +21,6 @@ export default function Hero() {
 
     return () => clearInterval(interval);
   }, [images.length]);
-
-  const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE}?text=Hola%20Pedrito,%20quiero%20sumarme%20a%20una%20clase%20de%20calistenia`, '_blank');
-  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gray-50 overflow-hidden">
@@ -36,22 +33,15 @@ export default function Hero() {
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {image.startsWith('/images/') ? (
-              <div className="relative w-full h-full">
-                <Image
-                  src={image}
-                  alt={`Entrenamiento calistenia ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </div>
-
-            ) : (
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-500 text-2xl">Imagen {index + 1}</span>
-              </div>
-            )}
+            <div className="relative w-full h-full">
+              <Image
+                src={image}
+                alt={`Entrenamiento calistenia ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
           </div>
         ))}
         {/* Overlay para mejorar legibilidad
@@ -76,7 +66,7 @@ export default function Hero() {
 
         {/* CTA Principal */}
         <button
-          onClick={handleWhatsAppClick}
+          onClick={() => handleWhatsAppClickCalistenia()}
           className="text-white font-semibold px-8 sm:px-12 py-4 sm:py-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
           style={{ backgroundColor: 'var(--primary)' }}
         >
