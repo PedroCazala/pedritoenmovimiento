@@ -26,36 +26,36 @@ export const testimonials: Testimonial[] = [
     },
     // Agrega 5  testimonios aquí sin img
     
-    {
-        id: "03",
-        name: "Nombre3",
-        text: "Texto de prueba 3",
-        startDate: "2025-01",
-    },
-    {
-        id: "04",
-        name: "Nombre4",
-        text: "Texto de prueba 4",
-        startDate: "2025-02",
-    },
-    {
-        id: "05",
-        name: "Nombre5",
-        text: "Texto de prueba 5",
-        startDate: "2025-03",
-    },
-    {
-        id: "06",
-        name: "Nombre6",
-        text: "Texto de prueba 6",
-        startDate: "2025-04",
-    },
-    {
-        id: "07",
-        name: "Nombre7",
-        text: "Texto de prueba 7",
-        startDate: "2025-05",
-    },
+    // {
+    //     id: "03",
+    //     name: "Nombre3",
+    //     text: "Texto de prueba 3",
+    //     startDate: "2025-01",
+    // },
+    // {
+    //     id: "04",
+    //     name: "Nombre4",
+    //     text: "Texto de prueba 4",
+    //     startDate: "2025-02",
+    // },
+    // {
+    //     id: "05",
+    //     name: "Nombre5",
+    //     text: "Texto de prueba 5",
+    //     startDate: "2025-03",
+    // },
+    // {
+    //     id: "06",
+    //     name: "Nombre6",
+    //     text: "Texto de prueba 6",
+    //     startDate: "2025-04",
+    // },
+    // {
+    //     id: "07",
+    //     name: "Nombre7",
+    //     text: "Texto de prueba 7",
+    //     startDate: "2025-05",
+    // },
 
 ];
 
