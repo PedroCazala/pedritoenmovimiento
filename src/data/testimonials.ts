@@ -11,7 +11,7 @@ export const testimonials: Testimonial[] = [
     {
         id: "01",
         name: "Aruna",
-        text: "Estoy muy feliz de haberme permitido arrancar calistenia por más que al principio piense que “no es para mi”, noté avances desde la semana 1 y me siento muy acompañada, increíble profe😊",
+        text: "Estoy muy feliz de haberme permitido arrancar calistenia por más que al principio pensé: “no es para mi”, noté avances desde la semana 1 y me siento muy acompañada, increíble profe😊",
         img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20ARU.png?alt=media&token=41b766a6-5ddd-43b9-9bc7-aca681979514",
         birthYear: 2003,
         startDate: "2025-05",
@@ -20,12 +20,21 @@ export const testimonials: Testimonial[] = [
         id: "02",
         name: "Lucila",
         text: "Del 1 al 10 las clases con pedrito son más que un MIL. Siempre fui una chica gym y no entendía como podía levantar mucho peso con máquinas pero a la hora de hacer una dominada o algo con mi cuerpo era imposible. Toda la paciencia y buena onda para enseñar y hacer más que un entrenamiento, sino un encuentro con lo grupal del ejercicio, el movimiento y la capacidad de superación y constancia. Además es re gracioso el tipo, hace buenos chistes. Recomiendo!!!",
-        img:"https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20LUCILA.png?alt=media&token=3e7b8041-28c3-43d0-8522-3dd37518b93a",
+        img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20LUCILA.png?alt=media&token=3e7b8041-28c3-43d0-8522-3dd37518b93a",
         // birthYear: 2003,
         startDate: "2025-08",
     },
+    {
+        id: "03",
+        name: "Rikity",
+        text: "Yo creo que profes con buena técnica hay bastantes, pero la calidad de enseñanza, paciencia y confianza que brinda Pedro no es común, ese el plus de sus clases. Gracias Pedro orgulloso de lo que he logrado junto contigo. Además el grupo que se arma es gente copada como el jeje.",
+
+        img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20RIQUI.jpg?alt=media&token=7395a969-8c13-4036-a1d1-0bdcd18f98c5",
+        birthYear: 1997,
+        startDate: "2025-04",
+    },
     // Agrega 5  testimonios aquí sin img
-    
+
     // {
     //     id: "03",
     //     name: "Nombre3",
@@ -56,7 +65,6 @@ export const testimonials: Testimonial[] = [
     //     text: "Texto de prueba 7",
     //     startDate: "2025-05",
     // },
-
 ];
 
 // Función para calcular la edad actual
