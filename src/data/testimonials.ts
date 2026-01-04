@@ -33,6 +33,15 @@ export const testimonials: Testimonial[] = [
         birthYear: 1997,
         startDate: "2025-04",
     },
+    {
+        id: "04",
+        name: "Natasha",
+        text: "Pedro es un genio, tiene mucha paciencia cuando explica y al momento de hacer los ejercicios esta pendiente para poder corregirte en cada ejercicio. ❤️❤️",
+
+        img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20Natasha.jpg?alt=media&token=8b64562a-f0e5-4855-958f-f10966dee268",
+        birthYear: 1988,
+        startDate: "2025-06",
+    },
     // Agrega 5  testimonios aquí sin img
 
     // {
