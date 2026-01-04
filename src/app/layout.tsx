@@ -12,28 +12,27 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 export const metadata = {
-  title: "Clases de Calistenia | Pedrito en Movimiento",
-  description:
-    "Entrenamientos de calistenia al aire libre en Buenos Aires. Sumate a una clase. Todos los niveles. CABA, Argentina.",
-
-  openGraph: {
     title: "Clases de Calistenia | Pedrito en Movimiento",
     description:
-      "Entrenamientos de fuerza y movilidad en parques. Todos los niveles.",
-    url: "https://pedritoenmovimiento.com.ar",
-    siteName: "Pedrito en Movimiento",
-    images: [
-      {
-        url: "https://pedritoenmovimiento.com.ar/og.jpg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "es_AR",
-    type: "website",
-  },
-};
+        "Entrenamientos de calistenia al aire libre en Buenos Aires. Sumate a una clase. Todos los niveles. CABA, Argentina.",
 
+    openGraph: {
+        title: "Clases de Calistenia | Pedrito en Movimiento",
+        description:
+            "Entrenamientos de fuerza y movilidad en parques. Todos los niveles.",
+        url: "https://pedritoenmovimiento.com.ar",
+        siteName: "Pedrito en Movimiento",
+        images: [
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/og%2Fog.jpg?alt=media&token=b876c079-a445-4115-9889-25d834aed57d",
+                width: 1200,
+                height: 630,
+            },
+        ],
+        locale: "es_AR",
+        type: "website",
+    },
+};
 
 export default function RootLayout({
     children,
