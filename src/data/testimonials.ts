@@ -3,7 +3,7 @@ export interface Testimonial {
     name: string;
     text: string;
     img?: string;
-    birthYear?: number;
+    birthYear?: number | string; // Puede ser número (año) o string (fecha completa)
     startDate?: string; // formato 'YYYY-MM' o 'YYYY-MM-DD'
 }
 
@@ -30,7 +30,7 @@ export const testimonials: Testimonial[] = [
         text: "Yo creo que profes con buena técnica hay bastantes, pero la calidad de enseñanza, paciencia y confianza que brinda Pedro no es común, ese el plus de sus clases. Gracias Pedro orgulloso de lo que he logrado junto contigo. Además el grupo que se arma es gente copada como el jeje.",
 
         img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20RIQUI.jpg?alt=media&token=7395a969-8c13-4036-a1d1-0bdcd18f98c5",
-        birthYear: 1997,
+        birthYear: "1997-04-05",
         startDate: "2025-04",
     },
     {
@@ -40,6 +40,15 @@ export const testimonials: Testimonial[] = [
 
         img: "https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20Natasha.jpg?alt=media&token=8b64562a-f0e5-4855-958f-f10966dee268",
         birthYear: 1988,
+        startDate: "2025-06",
+    },
+    {
+        id: "05",
+        name: "Viole",
+        text: "No me gusta moverme y aún así disfruto muchísimo las clases con Pedri. Tiene toda la onda y es muy meticuloso. Lo recontra recomiendo!!",
+
+        img:"https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20Viole.png?alt=media&token=09db12e7-9ea1-4b63-8de5-38f2ec53481b",
+        birthYear: "2003-11-12",
         startDate: "2025-06",
     },
     // Agrega 5  testimonios aquí sin img
@@ -77,9 +86,33 @@ export const testimonials: Testimonial[] = [
 ];
 
 // Función para calcular la edad actual
-export const calcularEdad = (birthYear: number): number => {
-    const currentYear = new Date().getFullYear();
-    return currentYear - birthYear;
+export const calcularEdad = (birthYear: number | string): number => {
+    if (typeof birthYear === 'number') {
+        // Si es un número, solo tiene el año
+        const currentYear = new Date().getFullYear();
+        return currentYear - birthYear;
+    } else {
+        // Si es un string, puede tener fecha completa (YYYY-MM-DD) o solo año (YYYY)
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+        const currentDay = new Date().getDate();
+        
+        if (birthYear.includes('-')) {
+            // Es una fecha completa (YYYY-MM-DD)
+            const [year, month, day] = birthYear.split("-").map(Number);
+            let age = currentYear - year;
+            
+            // Ajustar si aún no ha cumplido años este año
+            if (currentMonth < month - 1 || (currentMonth === month - 1 && currentDay < day)) {
+                age--;
+            }
+            
+            return age;
+        } else {
+            // Es solo el año como string
+            return currentYear - parseInt(birthYear);
+        }
+    }
 };
 
 // Función para calcular el tiempo que lleva como alumno
