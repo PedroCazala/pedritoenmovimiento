@@ -51,38 +51,34 @@ export const testimonials: Testimonial[] = [
         birthYear: "2003-11-12",
         startDate: "2025-06",
     },
-    // Agrega 5  testimonios aquí sin img
+    {
+        id: "06",
+        name: "Lili",
+        text: "Arranque calistenia con mucha expectativa luego de dejar el gym que me aburria mucho. Me sorprendio gratamente notar resultados. Las clases con Pedro son geniales. Los ejercicios muy cuidados y la musica es re copada. Vamos por mas Peter!",
 
-    // {
-    //     id: "03",
-    //     name: "Nombre3",
-    //     text: "Texto de prueba 3",
-    //     startDate: "2025-01",
-    // },
-    // {
-    //     id: "04",
-    //     name: "Nombre4",
-    //     text: "Texto de prueba 4",
-    //     startDate: "2025-02",
-    // },
-    // {
-    //     id: "05",
-    //     name: "Nombre5",
-    //     text: "Texto de prueba 5",
-    //     startDate: "2025-03",
-    // },
-    // {
-    //     id: "06",
-    //     name: "Nombre6",
-    //     text: "Texto de prueba 6",
-    //     startDate: "2025-04",
-    // },
-    // {
-    //     id: "07",
-    //     name: "Nombre7",
-    //     text: "Texto de prueba 7",
-    //     startDate: "2025-05",
-    // },
+        img:"https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20LILI.png?alt=media&token=68dbcaba-2a86-4eb2-a037-e61c6b5e4461",
+        birthYear: "1962-03-08",
+        startDate: "2025-06",
+    },
+    {
+        id: "07",
+        name: "Pablo",
+        text: "Me gustó esto de hacer gimnasia con mi propio peso corporal. Aprender la disciplina de ejercitar todas las partes del cuerpo. Claro que con las indicaciones de Pedro, aún es mejor, porque a medida que avanzas te va tirando los tips necesarios para mejorar y ganar fuerza. Un seguimiento constante y un trabajo en equipo con excelentes resultados.",
+
+        img:"https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20PABLO.png?alt=media&token=1ee171d2-cf55-426f-b5cc-779a78607368",
+        birthYear: 1969,
+        startDate: "2025-08",
+    },
+    {
+        id: "08",
+        name: "Manu",
+        text: "Después de mucho tiempo de sedentarismo, su paciencia y calidez en las clases, me ayudaron a reconectar con mi cuerpo de manera mas amable. Pasé de estar negado con la actividad física a esperar con ansias las clases y ver de que manera podía desafiarme poco a poco.",
+
+        img:"https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/alumnos%2FFoto%20MANU.png?alt=media&token=0e8e8397-ac21-4c08-a664-0c78125128f8",
+        birthYear: "2000-01-18",
+        startDate: "2025-7",
+    },
+   
 ];
 
 // Función para calcular la edad actual

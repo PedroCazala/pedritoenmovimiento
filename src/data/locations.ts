@@ -31,7 +31,7 @@ export const locations: Location[] = [
     id: 'parque-centenario',
     name: 'Parque Centenario',
     schedules: [
-      { days: 'Lunes y Miércoles', time: ['17:20 hs, A partir de Febrero'] },
+      { days: 'Lunes y Miércoles', time: ['18:30 hs, A partir de Febrero'] },
       { days: 'Martes y Jueves', time: ['7:30 hs', '8:40 hs'] },
       { days: 'Viernes', time: ['8:30 hs'] }
     ],
@@ -50,7 +50,7 @@ export const locations: Location[] = [
   },
   {
     id: 'belgrano',
-    name: 'Belgrano',
+    name: 'Belgrano - Virrey del Pino y Av. del Libertador',
     schedules: [
       { days: 'Martes y Jueves', time: ['17:20 hs, A partir de Febrero', '18:30 hs, A partir de Febrero'] },
       { days: 'Viernes', time: [ '18:00 hs, A partir de Febrero'] }
