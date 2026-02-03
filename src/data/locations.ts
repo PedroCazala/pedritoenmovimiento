@@ -31,8 +31,7 @@ export const locations: Location[] = [
     id: 'parque-centenario',
     name: 'Parque Centenario',
     schedules: [
-      { days: 'Lunes y Miércoles', time: ['18:30 hs, A partir de Febrero'] },
-      { days: 'Martes y Jueves', time: ['7:30 hs', '8:40 hs'] },
+      { days: 'Lunes y Miércoles', time: ['7:30 hs', '8:40 hs','18:30 hs'] },
       { days: 'Viernes', time: ['8:30 hs'] }
     ],
     // description: 'Clases para todos los niveles',
@@ -42,8 +41,8 @@ export const locations: Location[] = [
     id: 'unidad-latinoamericana',
     name: 'Palermo - Plaza de la unidad Latinoamericana',
     schedules: [
-      { days: 'Lunes y Miércoles', time: ['20 hs, A partir de Febrero'] },
-            { days: 'Viernes', time: [ '20:10 hs, A partir de Febrero'] }
+      { days: 'Lunes y Miércoles', time: ['20 hs'] },
+            { days: 'Viernes', time: [ '20:10 hs'] }
     ],
     // description: 'Clases intermedias',
     img: 'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/parques%2Funidad-latinoamericana.jpg?alt=media&token=085e7ab2-a71e-4d93-99be-48ff84ac98c2'
@@ -52,8 +51,8 @@ export const locations: Location[] = [
     id: 'belgrano',
     name: 'Belgrano - Virrey del Pino y Av. del Libertador',
     schedules: [
-      { days: 'Martes y Jueves', time: ['17:20 hs, A partir de Febrero', '18:30 hs, A partir de Febrero'] },
-      { days: 'Viernes', time: [ '18:00 hs, A partir de Febrero'] }
+      { days: 'Martes y Jueves', time: ['17:20 hs', '18:30 hs'] },
+      { days: 'Viernes', time: [ '18:00 hs'] }
     ],
     // description: 'Clases para principiantes',
     img: 'https://firebasestorage.googleapis.com/v0/b/pedritoenmovimiento.firebasestorage.app/o/parques%2Fbelgrano.jpg?alt=media&token=943589e8-4097-47da-b29f-6325fe9c9060'
