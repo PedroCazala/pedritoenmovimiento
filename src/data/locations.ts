@@ -31,7 +31,7 @@ export const locations: Location[] = [
     id: 'parque-centenario',
     name: 'Parque Centenario',
     schedules: [
-      { days: 'Lunes y Miércoles', time: ['7:30 hs', '8:40 hs','18:30 hs'] },
+      { days: 'Lunes y Miércoles', time: ['8:40 hs','18:30 hs'] },
       { days: 'Viernes', time: ['8:30 hs'] }
     ],
     // description: 'Clases para todos los niveles',
