@@ -17,7 +17,8 @@ export const generateSchedulesFromLocations = (): Schedule[] => {
     locations.forEach(location => {
         location.schedules.forEach(schedule => {
             // Parsear días y tiempos
-          const days = schedule.days.split(/,| y /);
+
+          const days = schedule.days.split(/,| y /).map(d => d.trim());
             const times = schedule.time;
             
             days.forEach(day => {
