@@ -13,11 +13,11 @@ export default function Home() {
     <div className="min-h-screen">
       <Hero />
       <QuienSoy />
+      <PruebaSocial2 />
       <MapaClases />
       <Horarios />
       <ComoSumarse /> 
 
-      <PruebaSocial2 />
       <TipoClases />
       <CTAFinal />
       <Footer />

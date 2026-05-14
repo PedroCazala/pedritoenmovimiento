@@ -17,7 +17,7 @@ export const generateSchedulesFromLocations = (): Schedule[] => {
     locations.forEach(location => {
         location.schedules.forEach(schedule => {
             // Parsear días y tiempos
-            const days = schedule.days.split(' y ');
+          const days = schedule.days.split(/,| y /);
             const times = schedule.time;
             
             days.forEach(day => {
@@ -57,11 +57,22 @@ export const getSchedulesByDay = () => {
     const daysOrder = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
     const orderedGrouped: { [key: string]: Schedule[] } = {};
     
+    // daysOrder.forEach(day => {
+    //     if (grouped[day]) {
+    //         orderedGrouped[day] = grouped[day];
+    //     }
+    // });
     daysOrder.forEach(day => {
-        if (grouped[day]) {
-            orderedGrouped[day] = grouped[day];
-        }
-    });
+    if (grouped[day]) {
+        orderedGrouped[day] = grouped[day].sort((a, b) => {
+            const toMinutes = (t: string) => {
+                const [h, m] = t.replace(/[ap]m/i, '').trim().split(':').map(Number);
+                return h * 60 + (m || 0);
+            };
+            return toMinutes(a.time) - toMinutes(b.time);
+        });
+    }
+});
     
     return orderedGrouped;
 };

@@ -78,6 +78,29 @@ export const testimonials: Testimonial[] = [
         birthYear: "2000-01-18",
         startDate: "2025-7",
     },
+  
+    {
+        id: "09",
+        name: "Tomi",
+        text: "Entreno con Pedrito desde hace casi un año y la experiencia ha sido impecable. Su enfoque en la técnica y la seguridad me dio la confianza para avanzar rápido: ya logré desbloquear la back lever, flexiones a una mano y estoy perfeccionando el muscle up. Es un profesional muy tranquilo que sabe leer perfectamente cuándo estás listo para el siguiente nivel, motivándote a superarte sin arriesgar tu salud. 100% recomendado para quienes buscan resultados reales.",
+
+        img: "https://res.cloudinary.com/dcfl47l8j/image/upload/q_auto/f_auto/v1778798797/WhatsApp_Image_2026-05-14_at_19.16.14_cfzslc.jpg",
+
+        birthYear: "1991-13-17",
+        startDate: "2025-5",
+    },
+  
+    {
+        id: "10",
+        name: "Facu",
+        text: "Las clases con Pedro son dinámicas, agiles y muy llevaderas. Siempre nos da algún consejo para llevar nuestra técnica un poco mas allá dependiendo del nivel de cada uno. Es muy cálido y amable así que un placer entrenar con el. ",
+
+        img:"https://res.cloudinary.com/dcfl47l8j/image/upload/q_auto/f_auto/v1778798797/WhatsApp_Image_2026-05-14_at_19.15.54_zwboda.jpg",
+
+        birthYear: "1982-09-07",
+        startDate: "2025-6",
+    },
+  
    
 ];
 
